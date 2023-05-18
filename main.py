@@ -6,7 +6,7 @@ def main():
 
     def input_error(func):
         print('List of available commands:')
-        print('add_record name phone\ndelete_record name\nadd name phone\ndelete name phone\nchange name old_phone new_phone\nclose/exit\nphone name\ndays_to_birthday name')
+        print('add_record name phone(only numbers) birthday(format: DD.MM.YYYY)\ndelete_record name\nadd name phone\ndelete name phone\nchange name old_phone new_phone\nclose/exit\nphone name\ndays_to_birthday name')
         while True:
             try:
                 result = func()
@@ -43,6 +43,8 @@ def main():
             if command in ['add_record', 'delete_record']:
                 changes = getattr(addressbook, command)
                 result = changes(*data)
+            elif command == 'show_all':
+                result = addressbook.iterator()
             else:
                 result = addressbook.change_record(command, data)
 
